@@ -26,12 +26,12 @@ def formatar(resultados):
                   for codigo, nome in resultados]
     return formatados
 
-def main():
-    text_busca = ' '.join(sys.argv[1:])
+def main(args):
+    text_busca = ' '.join(args)
     with open ('UnicodeData.txt') as documento:
         resultados = formatar(buscar(text_busca, analisar_documento(documento)))
 
     print('\n'.join(resultados))
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv[1:])

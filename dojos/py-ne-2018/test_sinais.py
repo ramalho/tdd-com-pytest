@@ -1,11 +1,7 @@
-import sys
 import pytest
 import io
 from sinais import analisar_linha, analisar_documento, buscar
 from sinais import formatar, main
-
-from unittest import mock
-
 
 
 @pytest.fixture
@@ -59,9 +55,7 @@ def test_formatar_resutado_varios():
     assert esperado == formatar([('0041', 'LATIN CAPITAL LETTER A'),
                                  ('0042', 'LATIN CAPITAL LETTER B')])
 
-def test_main(capsys, monkeypatch):
-    monkeypatch.setattr(sys, 'argv', ['', 'REGISTERED'])
-
-    main()
+def test_main(capsys):
+    main(['registered'])
     captured = capsys.readouterr()
     assert captured.out == "U+00AE\t®\tREGISTERED SIGN\n"
